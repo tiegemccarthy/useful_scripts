@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # A fairly simple bash script for generating station filelists.
-# Usage: ~/generateFilelist.sh <station_code> <data_location> <datastreams_option> <data_format> 
-# e.g. ~/generateFilelist.sh Hb /mnt/vbs4 1 1
+# Usage: ~/generateFilelist.sh <experiment_name> <station_code> <data_location> <datastreams_option> <data_format> 
+# e.g. ~/generateFilelist.sh aua093 Hb /mnt/vbs4 1 1
 
 # Valid datastream options are:
 # 0 : standard single datastream (typically useful for legacy stations).
@@ -12,6 +12,11 @@
 # Valid data format options are: 
 # 0 : Mark5 data format
 # 1 : VDIF data format 
+
+## TO-DO ##
+
+# 1. Bake in some defaults
+# 2. Replace vsum.gappy.py script call with some bash code (might be very messy - probably smoother to use python for everything in that case)
 
 ######################################################
 
