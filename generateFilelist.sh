@@ -1,25 +1,44 @@
 #!/bin/bash
 
 # A fairly simple bash script for generating station filelists.
-# Usage: ~/generateFilelist.sh <experiment_name> <station_code> <data_location> <datastreams_option> <data_format> 
-# e.g. ~/generateFilelist.sh aua093 Hb /mnt/vbs4 1 1
 
-# Valid datastream options are:
-# 0 : standard single datastream (typically useful for legacy stations).
-# 1 : Mixed-mode UTAS stations, 4 data streams labelled as XX, XY, SX and SY.
-# 2 : VGOS stations, 8 data streams, labelled A through H.
+# Help message and usage information
+HelpMessage()
+{
+   # Display Help
+    echo
+    echo "Usage: ~/generateFilelist.sh <experiment_name> <station_code> <data_location> <datastreams_option> <data_format> "
+    echo "e.g. ~/generateFilelist.sh aua093 Hb /mnt/vbs4 1 1"
+    echo
+    echo "Valid datastream options are:"
+    echo "0 : standard single datastream (typically useful for legacy stations)."
+    echo "1 : Mixed-mode UTAS stations, 4 data streams labelled as XX, XY, SX and SY."
+    echo "2 : VGOS stations, 8 data streams, labelled A through H."
+    echo
+    echo "Valid data format options are:" 
+    echo "0 : Mark5 data format"
+    echo "1 : VDIF data format"
+    echo
+}
 
-# Valid data format options are: 
-# 0 : Mark5 data format
-# 1 : VDIF data format 
-
-## TO-DO ##
+## TO-DO ########################################
 
 # 1. Bake in some defaults
 # 2. Replace vsum.gappy.py script call with some bash code (might be very messy - probably smoother to use python for everything in that case)
 
-######################################################
-
+##################################################
+# get options
+while getopts ":h" option; 
+do
+   case $option in
+      h) # display Help
+         HelpMessage
+         exit;;
+     \?) # incorrect option
+         echo "Error: Invalid option, use '-h' to print usage information."
+         exit;;
+   esac
+done
 # setup variables for clarity
 experiment=${1:?"Please specify an experiment name (as displayed on data files)"}
 station=${2:?"Please specify a station!"}
